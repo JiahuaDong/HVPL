@@ -89,14 +89,12 @@ To validate the forgetting (F) metric (FAP、FAR<sub>1</sub>)., please run `data
 If you use HVPL in your research or wish to refer to the baseline results published in the Model Zoo, please use the following BibTeX entry.
 
 ```BibTeX
-@misc{dong2025hierarchicalvisualpromptlearning,
+@InProceedings{Dong2025HVPL,
       title={Hierarchical Visual Prompt Learning for Continual Video Instance Segmentation}, 
       author={Jiahua Dong and Hui Yin and Wenqi Liang and Hanbin Zhao and Henghui Ding and Nicu Sebe and Salman Khan and Fahad Shahbaz Khan},
       year={2025},
-      eprint={2508.08612},
-      archivePrefix={arXiv},
-      primaryClass={cs.CV},
-      url={https://arxiv.org/abs/2508.08612}, 
+      booktitle={Proceedings of the IEEE/CVF International Conference on Computer Vision (ICCV)},
+      month={October},
 }
 ```
 
