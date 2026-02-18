@@ -1,40 +1,19 @@
 # Hierarchical Visual Prompt Learning for Continual Video Instance Segmentation (ICCV 2025)
 
 
-[Jiahua Dong<sup>*](https://scholar.google.com/citations?hl=zh-CN&user=xrXqa8AAAAAJ), Hui Yin<sup>*</sup>, Wenqi Liang, Hanbin Zhao, Henghui Ding, Nicu Sebe, Salman Khan, Fahad Shahbaz Khan (*equal contribution)
+[Jiahua Dong](https://scholar.google.com/citations?hl=zh-CN&user=xrXqa8AAAAAJ)<sup>\*</sup>, Hui Yin<sup>\*</sup>, Wenqi Liang, Hanbin Zhao, Henghui Ding, Nicu Sebe, Salman Khan, Fahad Shahbaz Khan
+<br>
+<sup>\*</sup> Equal contribution
 
-[[`arXiv`](https://arxiv.org/abs/2508.08612)] 
+[![](https://img.shields.io/badge/ICCV-2025-blue)](https://openaccess.thecvf.com/content/ICCV2025/html/Dong_Hierarchical_Visual_Prompt_Learning_for_Continual_Video_Instance_Segmentation_ICCV_2025_paper.html)
+[![Paper](https://img.shields.io/badge/Paper-arxiv.2508.08612-red)](https://arxiv.org/abs/2508.08612)
 
 <div align="center">
   <img src="Figs/HVPL_teaser.png" width="100%" height="100%"/>
 </div><br/>
 
 ## Introduction
- Video instance segmentation (VIS) has gained significant
- attention for its capability in segmenting and tracking object
- instances across video frames. However, most of the existing
- VIS methods unrealistically assume that the categories of
- object instances remain fixed over time. Moreover, they expe
-rience catastrophic forgetting of old classes when required
- to continuously learn object instances belonging to new
- classes. To address the above challenges, we develop a novel
- Hierarchical Visual Prompt Learning (HVPL) model, which
- alleviates catastrophic forgetting of old classes from both
- frame-level and video-level perspectives. Specifically, to mit
-igate forgetting at the frame level, we devise a task-specific
- frame prompt and an orthogonal gradient correction (OGC)
- module. The OGC module helps the frame prompt encode
- task-specific global instance information for new classes in
- each individual frame by projecting its gradients onto the
- orthogonal feature space of old classes. Furthermore, to ad
-dress forgetting at the video level, we design a task-specific
- video prompt and a video context decoder. This decoder first
- embeds structural inter-class relationships across frames
- into the frame prompt features, and then propagates task
-specific global video contexts from the frame prompt features
- to the video prompt. The effectiveness of our HVPL model
- is demonstrated through extensive experiments, in which
- it outperforms baseline methods.
+Video instance segmentation (VIS) has gained significant attention for its capability in segmenting and tracking object instances across video frames. However, most of the existing VIS methods unrealistically assume that the categories of object instances remain fixed over time. Moreover, they experience catastrophic forgetting of old classes when required to continuously learn object instances belonging to new classes. To address the above challenges, we develop a novel Hierarchical Visual Prompt Learning (HVPL) model, which alleviates catastrophic forgetting of old classes from both frame-level and video-level perspectives. Specifically, to mitigate forgetting at the frame level, we devise a task-specific frame prompt and an orthogonal gradient correction (OGC) module. The OGC module helps the frame prompt encode task-specific global instance information for new classes in each individual frame by projecting its gradients onto the orthogonal feature space of old classes. Furthermore, to address forgetting at the video level, we design a task-specific video prompt and a video context decoder. This decoder first embeds structural inter-class relationships across frames into the frame prompt features, and then propagates task-specific global video contexts from the frame prompt features to the video prompt. The effectiveness of our HVPL model is demonstrated through extensive experiments, in which it outperforms baseline methods.
 
 ##   Updates
 * **`Aug 21, 2025`:** 🎉🎉🎉 Code and pretrained weights are now available! Thanks for your patience :)
@@ -55,8 +34,7 @@ setup the corresponding datasets following
 
 ## Train 
 
-1. Step t=0: Training the model for base classes (you can skip this process if you use pre-trained weights.)
-2. Step t>1: Training the model for novel classes with HVPL
+All training scripts are located in the `scripts/` directory.
 
 
 |       Scenario        |           Script            |  
@@ -71,9 +49,18 @@ setup the corresponding datasets following
 |      OVIS 15-10       |    `bash OVIS_15_10.sh`     |  
 
 ## Eval
-Note that during training, testing will be performed, generating a corresponding `result.json` file as well as a `.txt` file for saving the evaluation metrics (AP、AP<sub>50</sub>、AP<sub>75</sub>、AR<sub>1</sub>).
+Note that during training, testing will be performed, generating a corresponding `result.json` file as well as a `.txt` file for saving the evaluation metrics (AP, AP<sub>50</sub>, AP<sub>75</sub>, AR<sub>1</sub>).
 
-To validate the forgetting (F) metric (FAP、FAR<sub>1</sub>)., please run `dataset_eval.py`.
+To compute the forgetting (F) metric (FAP, FAR<sub>1</sub>):
+
+1. **Organize results**: Rename each `result.json` to `result_X.json` (X = step index, 0 to N)
+2. **Place files**: Move renamed files to the directory specified in `dataset_eval.py` (`resFile_dir`)
+3. **Update ground truth**: Set `annFile` in `dataset_eval.py` to your test split path
+4. **Run evaluation**:
+
+```bash
+python dataset_eval.py
+```
 
 <div align="center">
 
@@ -90,11 +77,11 @@ If you use HVPL in your research or wish to refer to the baseline results publis
 
 ```BibTeX
 @InProceedings{Dong2025HVPL,
-      title={Hierarchical Visual Prompt Learning for Continual Video Instance Segmentation}, 
-      author={Jiahua Dong and Hui Yin and Wenqi Liang and Hanbin Zhao and Henghui Ding and Nicu Sebe and Salman Khan and Fahad Shahbaz Khan},
-      year={2025},
-      booktitle={Proceedings of the IEEE/CVF International Conference on Computer Vision (ICCV)},
-      month={October},
+  author    = {Dong, Jiahua and Yin, Hui and Liang, Wenqi and Zhao, Hanbin and Ding, Henghui and Sebe, Nicu and Khan, Salman and Khan, Fahad Shahbaz},
+  title     = {Hierarchical Visual Prompt Learning for Continual Video Instance Segmentation},
+  booktitle = {Proceedings of the IEEE/CVF International Conference on Computer Vision (ICCV)},
+  month     = {October},
+  year      = {2025}
 }
 ```
 
