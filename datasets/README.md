@@ -68,6 +68,11 @@ ovis/
 ```bash
 python convert_coco2ytvis.py
 ```
+
+## STEP-3: Prepare re-split annotations (split_dataset)
+
+The re-split annotation files are required for the validation of the forgetting (F) metric. You can download the `split_dataset.zip` from here: [[Google Drive](https://drive.google.com/file/d/1uu3_nX2xpjtPdORjxGX9bCYRWuxLr_bh/view?usp=sharing)]
+
 ### Expected final dataset structure for all:
 ```
 $DETECTRON2_DATASETS
